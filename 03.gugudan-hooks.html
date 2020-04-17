@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>리엑트 안녕!</title>
+	<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+	<script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+	<div id="app"></div>
+	<script type="text/babel">
+		const Gugudan = () => {
+			const [num1, setNum1] = React.useState(Math.ceil(Math.random() * 8) + 1);
+			const [num2, setNum2] = React.useState(Math.ceil(Math.random() * 8) + 1);
+			const [value, setValue] = React.useState('');
+			const [result, setResult] = React.useState('');
+
+			const onSubmit = (e) => {
+				e.preventDefault();
+				if(Number(value) === num1 * num2) {
+					setResult('딩동댕');
+					setNum1(Math.ceil(Math.random() * 8) + 1);
+					setNum2(Math.ceil(Math.random() * 8) + 1);
+					setValue('');
+				}
+				else {
+					setResult('땡!');
+					setValue('');
+				}
+			}
+
+			const onChange = (e) => {
+				setValue(e.target.value);
+			}
+
+			return (
+				<React.Fragment>
+					<h1>{num1} x {num2} ?</h1>
+					<form onSubmit={onSubmit}>
+						<input type="number" autoFocus value={value} onChange={onChange} />
+						<button>확인</button>
+					</form>
+					<h2>{result}</h2>
+				</React.Fragment>
+			);
+		}
+		ReactDOM.render(<Gugudan />, document.querySelector("#app"));
+	</script>
+</body>
+</html>
