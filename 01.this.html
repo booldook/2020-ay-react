@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>this를 알아보자</title>
+</head>
+<body>
+	
+	<script>
+		var a = "흥민";
+		console.log(a);
+		console.log(window.a);
+		const obj = {
+			a: "Hello",
+			b() {
+				console.log(this.a);
+			},
+			c: () => {
+				console.log(this.a);
+			},
+			d: function() {
+				console.log(this.a);
+			}
+		}
+		obj.b();
+		obj.c();
+		obj.d();
+	</script>
+</body>
+</html>
