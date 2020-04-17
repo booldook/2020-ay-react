@@ -15,8 +15,8 @@
 			constructor(props) {
 				super(props);
 				this.state = {
-					num1: Math.ceil(Math.random() * 8) + 1,
-					num2: Math.ceil(Math.random() * 8) + 1,
+					num1: Math.ceil(Math.random() * 18) + 1,
+					num2: Math.ceil(Math.random() * 18) + 1,
 					value: '',
 					result: '',
 				}
@@ -24,17 +24,41 @@
 
 			onSubmit = (e) => {
 				e.preventDefault();
-				console.log(this);
+				if(Number(this.state.value) === this.state.num1 * this.state.num2) {
+					this.setState({
+						result: "딩동댕",
+						value: '',
+						num1: Math.ceil(Math.random() * 18) + 1,
+						num2: Math.ceil(Math.random() * 18) + 1,
+					});
+				}
+				else {
+					this.setState({
+						result: "땡~",
+						value: '',
+					});
+				}
+			}
+
+			onChange = (e) => {
+				this.setState({
+					value: e.target.value,
+				});
 			}
 
 			render() {
 				return (
 					<React.Fragment>
-						<h2>{this.state.num1} x {this.state.num2} ?</h2>
+						<h1>{this.state.num1} x {this.state.num2} ?</h1>
 						<form onSubmit={this.onSubmit}>
+							<input 
+							type="number" 
+							autoFocus 
+							value={this.state.value} 
+							onChange={this.onChange} />
 							<button>확인</button>
 						</form>
-						<div></div>
+						<h2>{this.state.result}</h2>
 					</React.Fragment>
 				);
 			}
